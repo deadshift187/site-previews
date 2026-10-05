@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Posh LA Events Launch Plan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;1,6..96,400;1,6..96,500&family=Jost:wght@300;400;500&display=swap">
+<style>
+/* Layout: the proposal as a printed invitation suite. Same Posh editorial system as the preview: Bodoni italics, blush, champagne, one dark band for the price. */
+:root{
+  --ink:#171112; --night:#0f0b0c; --ivory:#fbf7f4; --blush:#f2d8d4; --rose:#c9727f; --gold:#c6a46a; --mute:#7a6a6c; --line:#e7dcd8;
+  --display:"Bodoni Moda", "Didot", Georgia, serif; --body:"Jost", "Futura", system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--ivory:#141011;--ink:#f5ece9;--blush:#3a2427;--mute:#b9a5a8;--line:#2e2324;--rose:#e79aa6;color-scheme:dark}}
+:root[data-theme="dark"]{--ivory:#141011;--ink:#f5ece9;--blush:#3a2427;--mute:#b9a5a8;--line:#2e2324;--rose:#e79aa6;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ivory);color:var(--ink);font:300 17px/1.7 var(--body)}
+.g{max-width:1100px;margin:0 auto;padding-inline:28px}
+h1,h2,h3{font-family:var(--display);font-weight:400;margin:0;text-wrap:balance}
+em{font-style:italic;color:var(--rose)}
+p{margin:0;max-width:62ch}
+.lab{font:500 .72rem var(--body);letter-spacing:.32em;text-transform:uppercase;color:var(--rose)}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:16px 30px;font:500 .78rem var(--body);letter-spacing:.24em;text-transform:uppercase;text-decoration:none;border:0;cursor:pointer}
+.btn.solid{background:var(--ink);color:var(--ivory)}
+.btn.line{box-shadow:inset 0 0 0 1px var(--ink);color:var(--ink);background:transparent}
+.top{border-bottom:1px solid var(--line)}
+.top .g{display:flex;align-items:center;justify-content:space-between;height:72px;gap:16px}
+.logo{font-family:var(--display);font-size:1.4rem;text-decoration:none}
+.logo i{color:var(--rose)}
+.top a.back{font:400 .74rem var(--body);letter-spacing:.2em;text-transform:uppercase;color:var(--mute);text-decoration:none}
+header{padding-block:80px 64px}
+header h1{font-size:clamp(3rem,8vw,6.4rem);line-height:.92;margin-top:20px}
+header p{font-size:1.2rem;color:var(--mute);margin-top:26px}
+.domain{margin-top:36px;display:inline-grid;gap:6px;border:1px solid var(--ink);padding:20px 26px}
+.domain b{font-family:var(--display);font-size:clamp(1.6rem,3.6vw,2.4rem);font-weight:400}
+.domain span{font-size:.9rem;color:var(--mute)}
+.ok{display:inline-flex;align-items:center;gap:8px;font:500 .72rem var(--body);letter-spacing:.2em;text-transform:uppercase;color:#3f7a55}
+.ok::before{content:"";width:8px;height:8px;border-radius:50%;background:#3f7a55}
+section{padding-block:88px;border-top:1px solid var(--line)}
+.head{display:grid;gap:14px;max-width:720px;margin-bottom:44px}
+.head h2{font-size:clamp(2.2rem,4.6vw,3.6rem);line-height:1}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--ink)}
+.col{padding:32px;display:grid;gap:14px;align-content:start}
+.col+.col{border-left:1px solid var(--ink);background:var(--blush)}
+.col h3{font-size:1.7rem}
+.col ul{list-style:none;padding:0;margin:0;display:grid;gap:10px}
+.col li{display:flex;gap:12px;font-size:.98rem}
+.col li::before{content:"✦";color:var(--gold);flex:none}
+.days{display:grid;grid-template-columns:repeat(5,1fr);gap:0;border-top:1px solid var(--ink)}
+.day{padding:22px 18px 0 0;display:grid;gap:8px;align-content:start;min-width:0}
+.day .n{font-family:var(--display);font-style:italic;font-size:1.9rem;color:var(--rose);line-height:1}
+.day h3{font-size:1.25rem}
+.day p{font-size:.92rem;color:var(--mute)}
+.price{background:var(--night);color:#f5ece9}
+.price .lab{color:var(--gold)}
+.price .head h2{color:#f5ece9}
+.price .head p{color:#cdbcbf}
+.pk{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:18px}
+.card{border:1px solid #3a2a2d;padding:30px 26px;display:grid;gap:12px;align-content:start}
+.card.main{border-color:#f2a7b4;background:#1d1416}
+.card h3{font-size:1.7rem;color:#f5ece9}
+.amt{font-family:var(--display);font-size:2.8rem;line-height:1;color:#f2a7b4}
+.amt small{font-family:var(--body);font-size:.95rem;color:#b9a5a8}
+.card p{font-size:.93rem;color:#cdbcbf}
+.card ul{list-style:none;padding:0;margin:4px 0 0;display:grid;gap:8px;font-size:.92rem;color:#e6d8da}
+.card li::before{content:"✦  ";color:var(--gold)}
+.tag{justify-self:start;background:#f2a7b4;color:#2a0716;font:500 .68rem var(--body);letter-spacing:.2em;text-transform:uppercase;padding:4px 11px}
+.fine{margin-top:22px;font-size:.82rem;color:#9d8a8d}
+.need{display:grid;grid-template-columns:1fr 1fr;gap:12px 40px;list-style:none;padding:0;margin:0}
+.need label{display:flex;gap:14px;align-items:flex-start;padding:14px 0;border-bottom:1px solid var(--line);cursor:pointer}
+.need input{margin-top:6px;accent-color:var(--rose);width:18px;height:18px;flex:none}
+.need b{font-weight:500;display:block}
+.need span{font-size:.92rem;color:var(--mute)}
+.count{margin-top:18px;font:500 .74rem var(--body);letter-spacing:.2em;text-transform:uppercase;color:var(--rose)}
+.why{display:grid;grid-template-columns:repeat(3,1fr);gap:32px}
+.why div{display:grid;gap:10px;align-content:start}
+.why b{font-family:var(--display);font-size:2.6rem;font-weight:400;line-height:1;color:var(--rose)}
+.why p{color:var(--mute);font-size:.95rem}
+.cta{text-align:center;padding-block:100px}
+.cta h2{font-size:clamp(2.6rem,6vw,4.8rem);line-height:1}
+.cta p{margin:22px auto 0;color:var(--mute);font-size:1.1rem}
+.cta .row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:34px}
+footer{padding-block:36px;border-top:1px solid var(--line);text-align:center;font-size:.85rem;color:var(--mute)}
+@media (max-width:900px){
+  .two,.pk,.why{grid-template-columns:1fr}
+  .col+.col{border-left:0;border-top:1px solid var(--ink)}
+  .days{grid-template-columns:1fr 1fr;row-gap:26px}
+  .need{grid-template-columns:1fr}
+}
+@media (max-width:520px){.g{padding-inline:16px}section{padding-block:64px}header{padding-block:48px}.days{grid-template-columns:1fr}.col,.card{padding:24px}}
+</style>
+</head>
+<body>
+<div class="top"><div class="g"><a class="logo" href="../">Posh <i>LA</i> Events</a><a class="back" href="../">← Back to the preview</a></div></div>
+
+<header><div class="g">
+  <span class="lab">Launch plan for Jennie Deeley</span>
+  <h1>Live in <em>seven days</em>.</h1>
+  <p>The preview you just saw becomes your real site, on your own domain, with your photos, your inquiries going straight to your phone, and a concept film you can send every new client.</p>
+  <div class="domain"><span class="ok">Available today</span><b>poshlaevents.com</b><span>About $12 a year. Worth grabbing before someone else does.</span></div>
+</div></header>
+
+<section><div class="g">
+  <div class="head"><span class="lab">What changes at launch</span><h2>From preview to <em>real business</em>.</h2></div>
+  <div class="two">
+    <div class="col"><h3>The preview has</h3><ul>
+      <li>The look, layout and copy</li><li>Your real Posh parties gallery</li><li>The Rhinestone Rodeo concept film</li><li>An inquiry form that doesn't send yet</li><li>Concept photos as stand-ins</li>
+    </ul></div>
+    <div class="col"><h3>Launch adds</h3><ul>
+      <li>Your own domain: poshlaevents.com</li><li>Inquiries texted and emailed to you the moment they arrive</li><li>Your real photos and the real Rhinestone Rodeo recap</li><li>Google Business Profile, so "party planner Calabasas" finds you</li><li>A link-in-bio page for your 139K followers</li><li>Edits on request, no website software to learn</li>
+    </ul></div>
+  </div>
+</div></section>
+
+<section><div class="g">
+  <div class="head"><span class="lab">Timeline</span><h2>One week, start to <em>live</em>.</h2></div>
+  <div class="days">
+    <div class="day"><span class="n">1</span><h3>Kickoff</h3><p>Grab the domain. Confirm the name, services and how you want inquiries.</p></div>
+    <div class="day"><span class="n">2–3</span><h3>Your content</h3><p>You send photos and a few client quotes. We write the rest.</p></div>
+    <div class="day"><span class="n">4–5</span><h3>Build</h3><p>Real photos in, forms wired to your phone, Google listing set up.</p></div>
+    <div class="day"><span class="n">6</span><h3>Your review</h3><p>You click through on your phone. We fix anything you want changed.</p></div>
+    <div class="day"><span class="n">7</span><h3>Launch</h3><p>Live on poshlaevents.com. Link goes in your Instagram bio.</p></div>
+  </div>
+</div></section>
+
+<section class="price"><div class="g">
+  <div class="head"><span class="lab">Investment</span><h2>Simple pricing. <em style="color:#f2a7b4">No surprises.</em></h2><p>One build fee, an optional monthly plan, and the motion work when you want it for an event.</p></div>
+  <div class="pk">
+    <div class="card main"><span class="tag">Start here</span><h3>Site launch</h3><div class="amt">$1,500</div><p>One-time. Everything in "Launch adds," built and live in seven days.</p><ul><li>Custom design, not a template</li><li>Domain and hosting setup</li><li>Inquiry form to your phone and email</li><li>Google Business Profile</li><li>Link-in-bio page</li></ul></div>
+    <div class="card"><h3>Care plan</h3><div class="amt">$150<small> / month</small></div><p>Optional. We keep it fresh so you never touch it.</p><ul><li>Hosting and security</li><li>New events added every month</li><li>Edits within 48 hours</li><li>Monthly inquiry report</li></ul></div>
+    <div class="card"><h3>Event motion</h3><div class="amt">$750<small> / event</small></div><p>Optional. The Rhinestone Rodeo treatment for any client.</p><ul><li>Concept film before the party</li><li>Three countdown teasers</li><li>Recap reel after</li></ul></div>
+  </div>
+  <p class="fine">Friends-and-family rates. Domain registration billed at cost.</p>
+</div></section>
+
+<section><div class="g">
+  <div class="head"><span class="lab">From you</span><h2>What we'll need to <em>start</em>.</h2><p>Check them off as you go. Most of it is already on your phone.</p></div>
+  <ul class="need" id="need">
+    <li><label><input type="checkbox" id="n1"><div><b>Confirm the name</b><span>Posh LA Events, or something else you love.</span></div></label></li>
+    <li><label><input type="checkbox" id="n2"><div><b>15–25 event photos</b><span>Your best at-home and private-venue parties. Phone photos are fine.</span></div></label></li>
+    <li><label><input type="checkbox" id="n3"><div><b>A photo of you</b><span>Any good shot works. We'll crop it to fit.</span></div></label></li>
+    <li><label><input type="checkbox" id="n4"><div><b>Where inquiries go</b><span>The phone number and email you want leads sent to.</span></div></label></li>
+    <li><label><input type="checkbox" id="n5"><div><b>Three client quotes</b><span>Screenshots of texts or reviews are perfect.</span></div></label></li>
+    <li><label><input type="checkbox" id="n6"><div><b>Service area</b><span>Which neighborhoods you'll travel to.</span></div></label></li>
+  </ul>
+  <p class="count" id="count">0 of 6 ready</p>
+</div></section>
+
+<section><div class="g">
+  <div class="head"><span class="lab">Why now</span><h2>Your Instagram is doing the <em>hard part</em>.</h2></div>
+  <div class="why">
+    <div><b>139K</b><p>people already follow you. Right now the "Outside Event Planning" link on your playhouse site goes to a single reel. Give them a place to book.</p></div>
+    <div><b>Q4</b><p>Holiday parties, winter birthdays and New Year's events book in the next few weeks. A site live by mid-October catches them.</p></div>
+    <div><b>1</b><p>link that sells every at-home party: your work, your process and an inquiry form, all in one place you can send anyone.</p></div>
+  </div>
+</div></section>
+
+<section class="cta"><div class="g">
+  <span class="lab">Next step</span>
+  <h2>Just reply <em>"let's go."</em></h2>
+  <p>Text Saint back and we'll start with the domain today. You'll see your real site within the week.</p>
+  <div class="row"><a class="btn solid" href="../">Back to the preview</a></div>
+</div></section>
+
+<footer>Prepared for Jennie Deeley · Posh LA Events launch plan</footer>
+
+<script>
+const boxes=[...document.querySelectorAll('#need input')];
+const upd=()=>{document.getElementById('count').textContent=boxes.filter(b=>b.checked).length+' of '+boxes.length+' ready'};
+boxes.forEach(b=>b.addEventListener('change',upd));
+</script>
+</body>
+</html>
