@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Product — VVS Los Angeles</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=IBM+Plex+Mono:wght@400;500&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/vvs.css">
+<link rel="icon" href="assets/brand/monogram-gold.png">
+</head>
+<body>
+<div id="site-header"></div>
+<div class="eyebrow" style="padding:22px var(--gutter) 0" id="crumbs"></div>
+<main class="pdp" id="pdp"></main>
+<section class="wrap" style="padding-top:20px">
+  <div class="section-head"><div><div class="eyebrow">Same grade</div><h2 class="display" style="font-size:clamp(34px,4vw,60px)">More from the Vault</h2></div></div>
+  <div class="grid" id="more"></div>
+</section>
+<div id="site-footer"></div>
+
+<script src="js/catalog.js"></script>
+<script src="js/site.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const { C, GRADES, DYES, card, money, img, displayTitle, revealOnScroll } = VVS;
+  const h = new URLSearchParams(location.search).get('p') || 'vvs-crest-core-14oz-dyed-hoodie';
+  const p = C.find(x => x.handle === h) || C[0];
+  const g = GRADES[p.grade];
+  document.title = displayTitle(p) + ' — VVS Los Angeles';
+
+  const LOOK = {
+    'vvs-crest-core-14oz-dyed-hoodie': ['01-alley-rust', 'hero-alley'],
+    'vvs-crest-core-dyed-hoodie': ['04-palms-orange', 'palms-orange'],
+    'vvs-crest-core-dyed-hoodie-1': ['02-rooftop-trio', 'rooftop-trio'],
+    'vvs-crest-core-dyed-hoodie-2': ['02-rooftop-trio', 'rooftop-trio'],
+    'vvs-crest-core-dyed-hoodie-3': ['02-rooftop-trio', 'rooftop-trio'],
+    'vvs-crest-core-black-14oz-hoodie': ['03-broadway-black', 'broadway-black'],
+    'vvs-crest-core-dyed-hoodie-5': ['08-skate-charcoal', 'skate-charcoal'],
+    'vvs-tee-cypress': ['05-studio-cypress-tee', 'studio-tee'],
+    'vvs-1-of-1-painted-jean-jacket': ['06-loft-painted-jacket', 'loft-jacket'],
+    'vvs-1-of-1-black-dyed-dress': ['07-river-dress', 'river-dress'],
+    'vvs-snapback-forrest-green': ['08-skate-charcoal', 'skate-charcoal'],
+    'vvs-vintage-ny-snapback': ['03-broadway-black', 'broadway-black'],
+  };
+  const look = LOOK[p.handle];
+  const REAL = { 'crest-crewneck-navy': ['real-0023-portrait', 'real-0027-portrait', 'real-0029'] };
+
+  const shots = p.images.map((f, i) => `<div class="shot ${i === 0 && p.images.length % 2 === 1 ? 'full' : ''}"><img src="${img(f)}" alt="${displayTitle(p)} view ${i + 1}"></div>`);
+  (REAL[p.handle] || []).forEach((r, i, a) => shots.push(`<div class="shot photo ${i === a.length - 1 && a.length % 2 ? 'full' : ''}"><img src="assets/look/${r}.webp" alt="${displayTitle(p)} on model, shot in the Vault"></div>`));
+  if (look) {
+    shots.push(`<div class="shot photo"><img src="assets/look/${look[0]}.webp" alt="${displayTitle(p)} on model"></div>`);
+    shots.push(`<div class="shot photo"><video autoplay muted loop playsinline poster="assets/look/${look[0]}.webp" style="width:100%;height:100%;object-fit:cover"><source src="assets/video/${look[1]}.mp4" type="video/mp4"></video></div>`);
+  }
+
+  const isTop = /hoodie|crewneck|jacket|tee|shirt|dress|jersey/i.test(p.title) || ['crest', 'vvs', 'vs1', 'vs2', 'vault'].includes(p.grade);
+  const sizes = p.sizes.length ? p.sizes : ['One size'];
+  const hoodie = /hoodie|crewneck/i.test(p.title) || p.grade === 'crest';
+  const rows = hoodie
+    ? [['S', 23, 27, 22], ['M', 24, 28, 23], ['L', 25.5, 29, 24], ['XL', 27, 30, 25], ['XXL', 28.5, 31, 26]]
+    : [['S', 20, 28, 8], ['M', 21.5, 29, 8.5], ['L', 23, 30, 9], ['XL', 24.5, 31, 9.5]];
+  const measure = `<table class="measure"><tr><th>Size</th><th>Pit to pit</th><th>Length</th><th>${hoodie ? 'Sleeve' : 'Sleeve'}</th></tr>${rows.map(r => `<tr><td>${r[0]}</td><td>${r[1]}"</td><td>${r[2]}"</td><td>${r[3]}"</td></tr>`).join('')}</table><p style="margin-top:8px;color:var(--stone);font-size:12px">Sample measurements for the mockup. Replace with real garment specs before launch.</p>`;
+
+  const dye = DYES[p.handle];
+  const story = p.grade === 'oneofone'
+    ? `This piece is <b>No. ${p.no}</b>. It was ${/bleach/i.test(p.title) ? 'hand-bleached' : /paint/i.test(p.title) ? 'hand-painted' : 'hand-dyed'} in the Vault and will never be made again. Once it sells, it moves to the Archive with its number.`
+    : p.grade === 'vintage'
+      ? `Pulled by hand and condition-graded by the Vault team. Real age is part of the piece, and we describe it honestly below.`
+      : dye ? `Hand-dyed in <b>${dye[0]}</b>, one small batch at a time. Every batch drifts slightly, so yours will be its own.` : '';
+
+  document.getElementById('crumbs').innerHTML = `<a href="shop.html">Shop</a> / <a href="shop.html?g=${p.grade}">${g.short}</a>`;
+  document.getElementById('pdp').innerHTML = `
+    <div class="pdp__gallery">${shots.join('')}</div>
+    <div class="pdp__info">
+      <div class="eyebrow">${p.grade === 'oneofone' ? '1 of 1 · No. ' + p.no : g.name}</div>
+      <h1 class="display">${displayTitle(p)}</h1>
+      <div class="price">${money(p.price)}</div>
+      <div class="grade-card"><div class="g gold-text">${g.short}</div><div><b style="font-size:12px;letter-spacing:.2em;text-transform:uppercase">${g.name}</b><div style="color:var(--bone-2);font-size:13px;margin-top:4px">${g.desc}</div></div></div>
+      ${story ? `<p style="color:var(--bone-2);margin-bottom:22px">${story}</p>` : ''}
+      <div class="eyebrow">Size</div>
+      <div class="sizes" id="sizes">${sizes.map((s, i) => `<button aria-pressed="${i === Math.min(2, sizes.length - 1)}">${s.replace('X Large', 'XL').replace('XX Large', 'XXL').replace('Large', 'L').replace('Medium', 'M').replace('Small', 'S')}</button>`).join('')}</div>
+      ${p.live
+        ? `<button class="btn btn--gold add" onclick="this.textContent='Added to bag';document.querySelector('.cart-count').textContent=1">Add to bag — ${money(p.price)}</button>`
+        : `<button class="btn add" disabled style="opacity:.6">Archived — sold</button><p style="margin-top:10px;color:var(--stone);font-size:13px">This piece has left the Vault. Join the list for the next drop.</p>`}
+      <div class="accordion" style="margin-top:26px">
+        <details open><summary>Details</summary><div class="body">${p.body || 'Details coming soon.'}</div></details>
+        ${isTop ? `<details><summary>Size &amp; fit</summary><div class="body">${measure}</div></details>` : ''}
+        ${p.grade === 'vintage' ? `<details open><summary>Condition</summary><div class="body"><b>Vault condition: 8/10.</b> Light age consistent with the era, no holes or stains that affect wear. Photographed as-is.</div></details>` : ''}
+        <details><summary>Shipping &amp; returns</summary><div class="body">Ships from Downtown LA in 1–2 business days. Free LA delivery over $150. 1 of 1 and vintage pieces are final sale; graded tees and Crest Core can be exchanged within 14 days.</div></details>
+      </div>
+    </div>`;
+
+  document.querySelectorAll('#sizes button').forEach(b => b.onclick = () =>
+    document.querySelectorAll('#sizes button').forEach(x => x.setAttribute('aria-pressed', x === b)));
+
+  const more = C.filter(x => x.grade === p.grade && x.handle !== p.handle && x.live).slice(0, 4);
+  const fill = more.length < 4 ? C.filter(x => x.live && x.grade !== p.grade && x.grade !== 'finds').slice(0, 4 - more.length) : [];
+  document.getElementById('more').innerHTML = more.concat(fill).map(card).join('');
+  revealOnScroll();
+});
+</script>
+</body>
+</html>

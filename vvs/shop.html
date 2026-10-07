@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shop — VVS Los Angeles</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=IBM+Plex+Mono:wght@400;500&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/vvs.css">
+<link rel="icon" href="assets/brand/monogram-gold.png">
+</head>
+<body>
+<div id="site-header"></div>
+
+<section class="page-hero">
+  <div class="eyebrow" id="kicker">Drop 001</div>
+  <h1 class="display" id="title">Shop</h1>
+  <p id="sub" style="color:var(--stone);max-width:560px;margin-top:14px"></p>
+</section>
+
+<div class="filters" id="filters"></div>
+
+<section class="wrap" style="padding-top:40px">
+  <div class="grid" id="grid"></div>
+  <p id="empty" style="display:none;color:var(--stone)">Nothing here yet. Join the list to hear when this grade drops.</p>
+</section>
+
+<div id="site-footer"></div>
+<script src="js/catalog.js"></script>
+<script src="js/site.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const { C, GRADES, card, revealOnScroll } = VVS;
+  const q = new URLSearchParams(location.search);
+  let grade = q.get('g') || 'all';
+  let view = q.get('view') === 'archive' ? 'archive' : 'live';
+  const order = ['all', 'oneofone', 'crest', 'vvs', 'vs1', 'vs2', 'vault', 'headwear', 'vintage', 'collab'];
+
+  function render() {
+    const pool = C.filter(p => p.grade !== 'finds' && (view === 'live' ? p.live : !p.live));
+    const counts = pool.reduce((m, p) => (m[p.grade] = (m[p.grade] || 0) + 1, m), {});
+    document.getElementById('filters').innerHTML = order.filter(k => k === 'all' || counts[k]).map(k =>
+      `<button class="chip" data-g="${k}" aria-pressed="${k === grade}">${k === 'all' ? 'All' : GRADES[k].short}<span class="ct">${k === 'all' ? pool.length : counts[k]}</span></button>`
+    ).join('') + `<label class="toggle"><input type="checkbox" id="arch" ${view === 'archive' ? 'checked' : ''}> Show archive</label>`;
+
+    const items = pool.filter(p => grade === 'all' || p.grade === grade)
+      .sort((a, b) => (b.new ? 1 : 0) - (a.new ? 1 : 0) || (b.created || '').localeCompare(a.created || ''));
+    document.getElementById('grid').innerHTML = items.map(card).join('');
+    document.getElementById('empty').style.display = items.length ? 'none' : 'block';
+
+    const g = GRADES[grade];
+    document.getElementById('kicker').textContent = view === 'archive' ? 'The Archive · Sold & retired' : 'Drop 001 · Live now';
+    document.getElementById('title').innerHTML = view === 'archive' ? 'The <em class="gold-text">Archive</em>' : (g ? g.short === '1 of 1' ? '1 of 1' : g.name : 'Shop');
+    document.getElementById('sub').textContent = view === 'archive'
+      ? 'Every piece that has ever left the Vault. 1 of 1s are never remade, so once they are here, they are gone for good.'
+      : (g ? g.desc : 'Every piece is graded. Filter by grade to see the weight, work and rarity behind the price.');
+
+    document.querySelectorAll('.chip').forEach(b => b.onclick = () => { grade = b.dataset.g; sync(); });
+    document.getElementById('arch').onchange = e => { view = e.target.checked ? 'archive' : 'live'; grade = 'all'; sync(); };
+    revealOnScroll();
+  }
+  function sync() {
+    const u = new URLSearchParams();
+    if (grade !== 'all') u.set('g', grade);
+    if (view === 'archive') u.set('view', 'archive');
+    history.replaceState(null, '', 'shop.html' + (u.toString() ? '?' + u : ''));
+    render();
+  }
+  render();
+});
+</script>
+</body>
+</html>
